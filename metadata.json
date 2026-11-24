@@ -1,0 +1,6 @@
+{
+  "name": "Orbit",
+  "description": "Fast, minimalist Threads-inspired social app built with Material You 3 dynamic wallpaper theming, multi-layer feed caching, and real-time threaded conversations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

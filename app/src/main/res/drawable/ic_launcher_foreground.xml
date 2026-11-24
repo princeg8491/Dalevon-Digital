@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Outer open orbital arc (strictly inside 66dp adaptive safe zone) -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M73.25,40.52 A23.5,23.5 0 1,1 56.05,30.59"
+        android:strokeColor="@color/orbit_icon_outer_ring"
+        android:strokeLineCap="round"
+        android:strokeWidth="5.6" />
+
+    <!-- Inner planetary ring -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M54,43.5 A10.5,10.5 0 1,0 54,64.5 A10.5,10.5 0 1,0 54,43.5 Z"
+        android:strokeColor="@color/orbit_icon_inner_ring"
+        android:strokeWidth="5.2" />
+
+    <!-- Orbital satellite dot centered in the open arc gap -->
+    <path
+        android:fillColor="@color/orbit_icon_satellite"
+        android:pathData="M65.75,29.45 A4.2,4.2 0 1,0 65.75,37.85 A4.2,4.2 0 1,0 65.75,29.45 Z" />
+</vector>

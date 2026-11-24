@@ -1,0 +1,314 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Public non-PII profile information, privacy toggle, and saved clickable links for an Orbit user.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "username": { "type": "string" },
+        "displayName": { "type": "string" },
+        "bio": { "type": "string" },
+        "avatarUrl": { "type": "string" },
+        "bannerUrl": { "type": "string" },
+        "linkUrl": { "type": "string" },
+        "extraLinks": { "type": "array", "items": { "type": "string" } },
+        "savedLinks": { "type": "array", "items": { "type": "object" } },
+        "profileBadges": { "type": "array", "items": { "type": "string" } },
+        "privateAccount": { "type": "boolean" },
+        "visibility": { "type": "string", "enum": ["public"] },
+        "followerCount": { "type": "integer" },
+        "followingCount": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "username", "displayName", "visibility", "followerCount", "followingCount", "createdAt", "updatedAt"]
+    },
+    "ProfileAlbum": {
+      "title": "ProfileAlbum",
+      "description": "A user-created photo & video album on their profile Media tab.",
+      "type": "object",
+      "properties": {
+        "ownerId": { "type": "string" },
+        "ownerUsername": { "type": "string" },
+        "title": { "type": "string" },
+        "coverUrl": { "type": "string" },
+        "itemCount": { "type": "integer" },
+        "visibility": { "type": "string", "enum": ["public"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["ownerId", "ownerUsername", "title", "itemCount", "visibility", "createdAt", "updatedAt"]
+    },
+    "AlbumMediaItem": {
+      "title": "AlbumMediaItem",
+      "description": "An individual photo or video inside a user's ProfileAlbum.",
+      "type": "object",
+      "properties": {
+        "ownerId": { "type": "string" },
+        "mediaUrl": { "type": "string" },
+        "mimeType": { "type": "string" },
+        "mediaType": { "type": "string", "enum": ["image", "video"] },
+        "fileName": { "type": "string" },
+        "sortOrder": { "type": "integer" },
+        "visibility": { "type": "string", "enum": ["public"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["ownerId", "mediaUrl", "mimeType", "mediaType", "sortOrder", "visibility", "createdAt"]
+    },
+    "PrivateUserState": {
+      "title": "PrivateUserState",
+      "description": "Owner-only PII, saved posts, privacy block/mute lists, and personal social graph state.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "email": { "type": "string" },
+        "followingIds": { "type": "array", "items": { "type": "string" } },
+        "likedPostIds": { "type": "array", "items": { "type": "string" } },
+        "repostedPostIds": { "type": "array", "items": { "type": "string" } },
+        "savedPostIds": { "type": "array", "items": { "type": "string" } },
+        "blockedUserIds": { "type": "array", "items": { "type": "string" } },
+        "mutedUserIds": { "type": "array", "items": { "type": "string" } },
+        "mutedWords": { "type": "array", "items": { "type": "string" } },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "updatedAt"]
+    },
+    "ThreadPost": {
+      "title": "ThreadPost",
+      "description": "A Threads-style post, quote repost, or threaded reply with audience & reply controls.",
+      "type": "object",
+      "properties": {
+        "authorId": { "type": "string" },
+        "authorUsername": { "type": "string" },
+        "authorDisplayName": { "type": "string" },
+        "authorAvatarUrl": { "type": "string" },
+        "body": { "type": "string" },
+        "topic": { "type": "string" },
+        "imageUrls": { "type": "array", "items": { "type": "string" } },
+        "attachments": { "type": "array", "items": { "type": "object" } },
+        "parentPostId": { "type": "string" },
+        "rootPostId": { "type": "string" },
+        "replyToAuthorUsername": { "type": "string" },
+        "replyToBody": { "type": "string" },
+        "repostOfPostId": { "type": "string" },
+        "repostAuthorUsername": { "type": "string" },
+        "quotedPostId": { "type": "string" },
+        "quotedAuthorUsername": { "type": "string" },
+        "quotedAuthorDisplayName": { "type": "string" },
+        "quotedAuthorAvatarUrl": { "type": "string" },
+        "quotedBody": { "type": "string" },
+        "quotedImageUrl": { "type": "string" },
+        "audienceMode": { "type": "string", "enum": ["everyone", "followers_only"] },
+        "replyMode": { "type": "string", "enum": ["everyone", "followers_only", "selected_users"] },
+        "allowedReplyUserIds": { "type": "array", "items": { "type": "string" } },
+        "pollOptions": { "type": "array", "items": { "type": "string" } },
+        "pollVotes": { "type": "object" },
+        "pollEndsAtMillis": { "type": "integer" },
+        "edited": { "type": "boolean" },
+        "visibility": { "type": "string", "enum": ["public"] },
+        "likeCount": { "type": "integer" },
+        "replyCount": { "type": "integer" },
+        "repostCount": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["authorId", "authorUsername", "authorDisplayName", "body", "parentPostId", "visibility", "likeCount", "replyCount", "repostCount", "createdAt", "updatedAt"]
+    },
+    "ActivityItem": {
+      "title": "ActivityItem",
+      "description": "Recipient-scoped social, Space, and app update notifications.",
+      "type": "object",
+      "properties": {
+        "recipientId": { "type": "string" },
+        "actorId": { "type": "string" },
+        "actorUsername": { "type": "string" },
+        "actorAvatarUrl": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": [
+            "like",
+            "reply",
+            "repost",
+            "quote",
+            "mention",
+            "follow",
+            "space_invite",
+            "space_join_request",
+            "space_join_approved",
+            "space_member_joined",
+            "app_update"
+          ]
+        },
+        "postId": { "type": "string" },
+        "spaceId": { "type": "string" },
+        "snippet": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["recipientId", "actorId", "actorUsername", "type", "createdAt"]
+    },
+    "Community": {
+      "title": "Community",
+      "description": "Orbit Space with admin/moderator governance, public or private privacy, bans, mutes, invites, and join requests.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "category": { "type": "string" },
+        "coverUrl": { "type": "string" },
+        "accentIndex": { "type": "integer" },
+        "ownerId": { "type": "string" },
+        "ownerUsername": { "type": "string" },
+        "privacyMode": { "type": "string", "enum": ["public", "private"] },
+        "moderatorIds": { "type": "array", "items": { "type": "string" } },
+        "bannedUserIds": { "type": "array", "items": { "type": "string" } },
+        "mutedUntilMap": { "type": "object" },
+        "pendingRequestIds": { "type": "array", "items": { "type": "string" } },
+        "invitedUserIds": { "type": "array", "items": { "type": "string" } },
+        "memberIds": { "type": "array", "items": { "type": "string" } },
+        "memberCount": { "type": "integer" },
+        "postCount": { "type": "integer" },
+        "visibility": { "type": "string", "enum": ["public"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "category", "accentIndex", "ownerId", "ownerUsername", "memberIds", "memberCount", "postCount", "visibility", "createdAt", "updatedAt"]
+    },
+    "CommunityPost": {
+      "title": "CommunityPost",
+      "description": "A post published inside an Orbit Space stream.",
+      "type": "object",
+      "properties": {
+        "communityId": { "type": "string" },
+        "authorId": { "type": "string" },
+        "authorUsername": { "type": "string" },
+        "authorDisplayName": { "type": "string" },
+        "authorAvatarUrl": { "type": "string" },
+        "streamCategory": { "type": "string" },
+        "body": { "type": "string" },
+        "imageUrls": { "type": "array", "items": { "type": "string" } },
+        "attachments": { "type": "array", "items": { "type": "object" } },
+        "edited": { "type": "boolean" },
+        "plusOneCount": { "type": "integer" },
+        "plusOneUserIds": { "type": "array", "items": { "type": "string" } },
+        "commentCount": { "type": "integer" },
+        "visibility": { "type": "string", "enum": ["public"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["communityId", "authorId", "authorUsername", "authorDisplayName", "streamCategory", "body", "plusOneCount", "plusOneUserIds", "commentCount", "visibility", "createdAt", "updatedAt"]
+    },
+    "CommunityComment": {
+      "title": "CommunityComment",
+      "description": "A comment on a Space post.",
+      "type": "object",
+      "properties": {
+        "authorId": { "type": "string" },
+        "authorUsername": { "type": "string" },
+        "authorAvatarUrl": { "type": "string" },
+        "body": { "type": "string" },
+        "visibility": { "type": "string", "enum": ["public"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["authorId", "authorUsername", "body", "visibility", "createdAt"]
+    },
+    "Conversation": {
+      "title": "Conversation",
+      "description": "Private 1-on-1 or multi-participant group Direct Message conversation between Orbit users.",
+      "type": "object",
+      "properties": {
+        "participantIds": { "type": "array", "items": { "type": "string" } },
+        "participantNames": { "type": "object" },
+        "participantUsernames": { "type": "object" },
+        "participantAvatars": { "type": "object" },
+        "groupTitle": { "type": "string" },
+        "lastReadAtByUser": { "type": "object" },
+        "lastMessageText": { "type": "string" },
+        "lastMessageSenderId": { "type": "string" },
+        "lastMessageAt": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["participantIds", "lastMessageText", "lastMessageSenderId", "lastMessageAt", "createdAt", "updatedAt"]
+    },
+    "DirectMessage": {
+      "title": "DirectMessage",
+      "description": "A single private message inside a Direct Message conversation, supporting per-user emoji reactions.",
+      "type": "object",
+      "properties": {
+        "senderId": { "type": "string" },
+        "senderUsername": { "type": "string" },
+        "body": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "attachments": { "type": "array", "items": { "type": "object" } },
+        "reactions": { "type": "object" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["senderId", "senderUsername", "body", "createdAt"]
+    },
+    "AppRelease": {
+      "title": "AppRelease",
+      "description": "Published Orbit app release metadata and bound Drive APK URL.",
+      "type": "object",
+      "properties": {
+        "versionCode": { "type": "integer" },
+        "versionName": { "type": "string" },
+        "releaseNotes": { "type": "string" },
+        "driveDownloadUrl": { "type": "string" },
+        "publishedBy": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["versionCode", "versionName", "publishedBy", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/profiles/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Public Orbit user profiles and saved links."
+    },
+    "/profiles/{userId}/albums/{albumId}": {
+      "schema": { "$ref": "#/entities/ProfileAlbum" },
+      "description": "User-created media albums on their profile Media tab."
+    },
+    "/profiles/{userId}/albums/{albumId}/items/{itemId}": {
+      "schema": { "$ref": "#/entities/AlbumMediaItem" },
+      "description": "Photos and videos inside a user profile media album."
+    },
+    "/users/{userId}/private/{docId}": {
+      "schema": { "$ref": "#/entities/PrivateUserState" },
+      "description": "Owner-only private user state, saved posts, and privacy filters."
+    },
+    "/posts/{postId}": {
+      "schema": { "$ref": "#/entities/ThreadPost" },
+      "description": "Public Threads posts, quote reposts, and replies."
+    },
+    "/activities/{activityId}": {
+      "schema": { "$ref": "#/entities/ActivityItem" },
+      "description": "Recipient-scoped activity, Space, and update notifications."
+    },
+    "/communities/{communityId}": {
+      "schema": { "$ref": "#/entities/Community" },
+      "description": "Orbit Spaces with admin/mod governance and public/private membership."
+    },
+    "/communityPosts/{postId}": {
+      "schema": { "$ref": "#/entities/CommunityPost" },
+      "description": "Public posts inside Space streams."
+    },
+    "/communityPosts/{postId}/comments/{commentId}": {
+      "schema": { "$ref": "#/entities/CommunityComment" },
+      "description": "Public comments on Space posts."
+    },
+    "/conversations/{conversationId}": {
+      "schema": { "$ref": "#/entities/Conversation" },
+      "description": "Participant-only 1-on-1 DM threads."
+    },
+    "/conversations/{conversationId}/messages/{messageId}": {
+      "schema": { "$ref": "#/entities/DirectMessage" },
+      "description": "Participant-only direct messages."
+    },
+    "/appReleases/{releaseId}": {
+      "schema": { "$ref": "#/entities/AppRelease" },
+      "description": "Latest Orbit release notice metadata and Drive link."
+    }
+  }
+}

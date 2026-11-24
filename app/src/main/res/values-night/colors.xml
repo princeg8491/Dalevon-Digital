@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Material You Adaptive Icon (Dark Mode fallback for API 24-30) -->
+    <color name="orbit_icon_bg">#FF121118</color>
+    <color name="orbit_icon_bg_accent">#FF231942</color>
+    <color name="orbit_icon_bg_glow">#FF1D2B38</color>
+    <color name="orbit_icon_outer_ring">#FFF3EEFF</color>
+    <color name="orbit_icon_inner_ring">#FFC4B5FD</color>
+    <color name="orbit_icon_satellite">#FF5EEAD4</color>
+</resources>
